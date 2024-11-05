@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<link rel="shortcut icon" href="/static/img/ICO.ico" />
+	<!-- My CSS -->
+	<link rel="stylesheet" href="/static/css/tickets/admin.css">
+	<link rel="stylesheet" href="/static/css/tickets/ajustes.css">
+	<link rel="stylesheet" href="/static/css/tickets/content.css">
+	<link rel="stylesheet" href="/static/css/tickets/main.css">
+	<link rel="stylesheet" href="/static/css/tickets/modal.css">
+	<link rel="stylesheet" href="/static/css/tickets/navbar.css">
+	<link rel="stylesheet" href="/static/css/tickets/otros.css">
+	<link rel="stylesheet" href="/static/css/tickets/sidebar.css">
+	<link rel="stylesheet" href="/static/css/tickets/status.css">
+	<link rel="stylesheet" href="/static/css/tickets/tablas.css">
+	<link rel="stylesheet" href="/static/css/tickets/select.css">
+	<link rel="stylesheet" href="/static/css/tickets/comentarios.css">
+
+
+	<title>User Dashboard | CPSP</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bx-ghost'></i>
+			<span class="text">Bienvenido (name)</span>
+		</a>
+		<ul class="side-menu top">
+			<li>
+				<a href="/templates/usuario/index.html">
+					<i class='bx bxs-home'></i>				
+					<span class="text">Inicio</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="#" data-section="main1">
+					<i class='bx bx-task'></i>
+					<span class="text">Seguimiento</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<form action="#">
+				<div class="form-input" hidden>
+					<input type="search" placeholder="Search..." hidden>
+					<button type="submit" class="search-btn" hidden><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			
+			<a href="#" class="profile">
+				<img src="">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		 
+		<main id="main1" class="content-section">
+			<div class="head-title">
+				<div class="left">
+					<h1>Seguimiento</h1>
+					<ul class="hhhhhh">
+						<li>
+							<a href="#">Seguimiento del Ticket</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Ticekt(AAAAAA-09)</a>
+						</li>
+					</ul>
+				</div>
+				<button href="#" class="btn-download" disabled>
+					<span class="text">Reabrir Ticket</span>
+				</button>
+
+				
+			</div>
+
+			
+
+			<div class="table-data">
+				<div class="order">
+					<div class="table_header">
+						<h2>Informacion del Ticket</h2>
+						<!-- Button trigger modal -->
+						<button class="cerrar" id="openModalBtn">Cerrar Ticket</button>
+					</div>
+					<br><br>
+					<div class="infoticket">
+						
+						<div class="titlet">
+							<h2>AAAAAAAAAAA</h2>
+						</div>
+						<br>
+						<div class="infoti">
+							<span>
+								Aaaaaaaaaaa iNFO
+							</span>
+						</div>
+						<br>
+						<div class="imgti">
+							<img src="" alt="AAAAAAAA">
+						</div>
+
+					</div>
+					
+				</div>
+
+				<div class="todo">
+					<div class="head" style="text-align: center; display: flex; align-items: center; justify-content: center;">
+						<h3 style="text-align: center;">Comentarios</h3>
+					</div>
+					<div class="comentarios">
+						<div class="comentario">
+							<div class="avatar"></div>
+							<div>
+								<div class="encabezado">
+									<span class="nombre">Juan peres (Gerente)</span>
+									<span class="fecha">October 22, 2024 12:27 am</span>
+								</div>
+								<div class="texto">hello world!</div>
+							</div>
+						</div>
+					
+						<div class="comentario">
+							<div class="avatar"></div>
+							<div>
+								<div class="encabezado">
+									<span class="nombre">Andres Tolosa (Soporte)</span>
+									<span class="fecha">October 26, 2024 05:54 am</span>
+								</div>
+								<div class="texto">apocosi tilin</div>
+							</div>
+						</div>
+					</div>
+					<!-- Botón de Respuesta -->
+					<button class="reply-btn" onclick="toggleReplyBox(this)">
+						<i class="fas fa-reply"></i> Reply
+					</button>
+
+					<!-- Caja de Respuesta Oculta (Se mostrará al hacer clic en el botón) -->
+					<div class="reply-box" style="display: none;">
+						<!-- Barra de herramientas con iconos -->
+						<div class="toolbar">
+							<button onclick="formatText('bold')" title="Negrita"><i class="fas fa-bold"></i></button>
+							<button onclick="formatText('italic')" title="Cursiva"><i class="fas fa-italic"></i></button>
+							<button onclick="formatText('underline')" title="Subrayado"><i class="fas fa-underline"></i></button>
+							<button onclick="alignText('left')" title="Alinear a la izquierda"><i class="fas fa-align-left"></i></button>
+							<button onclick="alignText('center')" title="Centrar"><i class="fas fa-align-center"></i></button>
+							<button onclick="alignText('right')" title="Alinear a la derecha"><i class="fas fa-align-right"></i></button>
+						</div>
+
+						<!-- Caja editable para escribir la respuesta -->
+						<div id="replyText" contenteditable="true" placeholder="Escribe tu respuesta..." style="border: 1px solid #ccc; padding: 10px; min-height: 100px;"></div>
+						
+						<!-- Contenedor para vista previa de la imagen -->
+						<div id="imagePreview" style="margin-top: 10px;"></div>
+						
+						<!-- Botón de Enviar -->
+						<button class="send-btn"><i class="fas fa-paper-plane"></i> Enviar</button>
+					</div>
+				</div>	
+			</div>
+		</main>
+
+
+	</section>
+	<!-- CONTENT -->
+
+	
+	<script src="/static/js/tickets/script.js"></script>
+
+	
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			// Seleccionar todos los enlaces de la navegación
+			const links = document.querySelectorAll('.side-menu a');
+			// Seleccionar todas las secciones de contenido
+			const sections = document.querySelectorAll('.content-section');
+	
+			// Añadir un manejador de eventos para cada enlace
+			links.forEach(link => {
+				link.addEventListener('click', function (e) {
+					e.preventDefault();
+					// Obtener el id de la sección a mostrar desde el atributo data-section
+					const sectionId = link.getAttribute('data-section');
+	
+					// Ocultar todas las secciones
+					sections.forEach(section => {
+						section.style.display = 'none';
+					});
+	
+					// Mostrar la sección correspondiente
+					const targetSection = document.getElementById(sectionId);
+					if (targetSection) {
+						targetSection.style.display = 'block';
+					}
+	
+					// Opcional: actualizar la clase activa en el menú
+					links.forEach(link => {
+						link.parentElement.classList.remove('active');
+					});
+					link.parentElement.classList.add('active');
+				});
+			});
+	
+			// Mostrar la primera sección por defecto
+			if (sections.length > 0) {
+				sections.forEach(section => {
+					section.style.display = 'none';
+				});
+				sections[0].style.display = 'block';
+			}
+		});
+
+
+
+
+
+	</script>
+	<!-- =========== Scripts =========  -->
+	<script src="https://kit.fontawesome.com/9a18bf423e.js" crossorigin="anonymous"></script>
+	<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+	<script src="/static/js/tickets/t.js"></script>
+	
+    
+	
+
+	
+	<!-- Code injected by live-server 
+	<script>
+		// <![CDATA[  <-- For SVG support
+		if ('WebSocket' in window) {
+			(function () {
+				function refreshCSS() {
+					var sheets = [].slice.call(document.getElementsByTagName("link"));
+					var head = document.getElementsByTagName("head")[0];
+					for (var i = 0; i < sheets.length; ++i) {
+						var elem = sheets[i];
+						var parent = elem.parentElement || head;
+						parent.removeChild(elem);
+						var rel = elem.rel;
+						if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+							var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+							elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+						}
+						parent.appendChild(elem);
+					}
+				}
+				var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+				var address = protocol + window.location.host + window.location.pathname + '/ws';
+				var socket = new WebSocket(address);
+				socket.onmessage = function (msg) {
+					if (msg.data == 'reload') window.location.reload();
+					else if (msg.data == 'refreshcss') refreshCSS();
+				};
+				if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+					console.log('Live reload enabled.');
+					sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+				}
+			})();
+		}
+		else {
+			console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+		}
+		// ]]>
+	</script>-->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

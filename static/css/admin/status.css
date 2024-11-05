@@ -1,0 +1,366 @@
+
+/* status de idk */
+.status.ac{
+	background-color: #86e4c3;
+	color: #006b5b;
+	border-radius: 20px;
+}
+.status.su{
+	background-color: #e4db86;
+	color: #6b6000;
+	border-radius: 20px;
+}
+.status.de{
+	background-color: #e48686;
+	color: #6b0000;
+	border-radius: 20px;
+}
+/* status de idk */
+
+
+/* status de roles */
+.status.admin {
+  background-color: #86b2e4;
+  color: #002e6b;
+  border-radius: 20px;
+}
+.status.soporte {
+  background-color: #86e493;
+  color: #006b00;
+  border-radius: 20px;
+}
+.status.analista {
+  background-color: #e4e286;
+  color: #696b00;
+  border-radius: 20px;
+}
+.status.gerente {
+  background-color: #8c86e4;
+  color: #000b6b;
+  border-radius: 20px;
+}
+.status.coordinador {
+  background-color: #e4ac86;
+  color: #6b3400;
+  border-radius: 20px;
+}
+/* status de roles */
+
+
+/* status de idk */
+.status.ab {
+	background-color: #86b2e4;
+	color: #002e6b;
+	border-radius: 20px;
+}
+.status.ec {
+	background-color: #e4ac86;
+	color: #6b3400;
+	border-radius: 20px;
+}
+.status.ep {
+	background-color: #8c86e4;
+	color: #000b6b;
+	border-radius: 20px;
+}
+.status.ce{
+	background-color: #e48686;
+	color: #6b0000;
+	border-radius: 20px;
+}
+/* status de idk */
+
+
+
+
+
+/* status de departamentos */
+.status.sgc{
+	background-color: #e49c86;
+	color: #6b1900;
+	border-radius: 20px;
+}
+.status.aro{
+	background-color: #e4b086;
+	color: #6b3000;
+	border-radius: 20px;
+}
+.status.pgs{
+	background-color: #e4c386;
+	color: #6b3900;
+	border-radius: 20px;
+}
+.status.ss{
+	background-color: #e4c686;
+	color: #6b4f00;
+	border-radius: 20px;
+}
+.status.dg{
+	background-color: #e4d686;
+	color: #6b6400;
+	border-radius: 20px;
+}
+.status.gdo{
+	background-color: #dee486;
+	color: #5b6b00;
+	border-radius: 20px;
+}
+.status.rh{
+	background-color: #c0e486;
+	color: #576b00;
+	border-radius: 20px;
+}
+.status.jro{
+	background-color: #a1e486;
+	color: #396b00;
+	border-radius: 20px;
+}
+.status.mdt{
+	background-color: #9ce486;
+	color: #126b00;
+	border-radius: 20px;
+}
+.status.acn{
+	background-color: #86e48e;
+	color: #006b17;
+	border-radius: 20px;
+}
+.status.cps{
+	background-color: #86e4aa;
+	color: #006b2d;
+	border-radius: 20px;
+}
+.status.mdc{
+	background-color: #86e4cc;
+	color: #006b54;
+	border-radius: 20px;
+}
+.status.nmd{
+	background-color: #86e4e4;
+	color: #00646b;
+	border-radius: 20px;
+}
+.status.rgs{
+	background-color: #86d6e4;
+	color: #00566b;
+	border-radius: 20px;
+}
+.status.ccr{
+	background-color: #86b2e4;
+	color: #00326b;
+	border-radius: 20px;
+}
+.status.cla{
+	background-color: #86b7e4;
+	color: #00226b;
+	border-radius: 20px;
+}
+.status.cbd{
+	background-color: #8694e4;
+	color: #001d6b;
+	border-radius: 20px;
+}
+.status.pon{
+	background-color: #8697e4;
+	color: #00106b;
+	border-radius: 20px;
+}
+.status.bda{
+	background-color: #868fe4;
+	color: #00026b;
+	border-radius: 20px;
+}
+.status.tls{
+	background-color: #8f86e4;
+	color: #00076b;
+	border-radius: 20px;
+}
+.status.sm{
+	background-color: #8c86e4;
+	color: #02006b;
+	border-radius: 20px;
+}
+.status.gna{
+	background-color: #9a86e4;
+	color: #02006b;
+	border-radius: 20px;
+}
+.status.cdo{
+	background-color: #a786e4;
+	color: #17006b;
+	border-radius: 20px;
+}
+.status.cjs{
+	background-color: #b286e4;
+	color: #29006b;
+	border-radius: 20px;
+}
+.status.ctn{
+	background-color: #c286e4;
+	color: #44006b;
+	border-radius: 20px;
+}
+.status.cdv{
+	background-color: #c286e4;
+	color: #56006b;
+	border-radius: 20px;
+}
+.status.mdi{
+	background-color: #d186e4;
+	color: #5f006b;
+	border-radius: 20px;
+}
+/* status de departamentos */
+
+
+
+
+/* status de categoria */
+.status.hde{
+	background-color: #86afe4;
+	color: #003b6b;
+	border-radius: 20px;
+}
+.status.ste{
+	background-color: #86e496;
+	color: #006b0e;
+	border-radius: 20px;
+}
+.status.oto{
+	background-color: #e49486;
+	color: #6b2b00;
+	border-radius: 20px;
+}
+/* status de categoria */
+
+
+
+
+
+/* status de prioridad */
+.status.bja{
+	background-color: #a4e486;
+	color: #276b00;
+	border-radius: 20px;
+}
+.status.mda{
+	background-color: #dee486;
+	color: #6b6400;
+	border-radius: 20px;
+}
+.status.ata{
+	background-color: #e48686;
+	color: #6b0000;
+	border-radius: 20px;
+}
+/* status de prioridad */
+
+
+
+
+
+
+/* status de prioridad */
+.status.abo{
+	background-color: #e49186;
+	color: #6b1000;
+	border-radius: 20px;
+}
+.status.pne{
+	background-color: #dee486;
+	color: #6b6400;
+	border-radius: 20px;
+}
+.status.eco{
+	background-color: #86c6e4;
+	color: #00496b;
+	border-radius: 20px;
+}
+.status.epo{
+	background-color: #86ace4;
+	color: #002e6b;
+	border-radius: 20px;
+}
+.status.cro{
+	background-color: #86e48b;
+	color: #006b0e;
+	border-radius: 20px;
+}
+/* status de prioridad */
+
+
+/* status de Sucursal */
+
+.status.cpo{
+	background-color: #e48686;
+	color: #6b0000;
+	border-radius: 20px;
+}
+.status.mtz{
+	background-color: #e4a486;
+	color: #6b2700;
+	border-radius: 20px;
+}
+.status.ztn{
+	background-color: #e4a486;
+	color: #6b2700;
+	border-radius: 20px;
+}
+.status.jmi{
+	background-color: #e4d386;
+	color: #6b5200;
+	border-radius: 20px;
+}.status.zpn{
+	background-color: #c0e486;
+	color: #006b0e;
+	border-radius: 20px;
+}.status.spo{
+	background-color: #86e48b;
+	color: #006b0e;
+	border-radius: 20px;
+}.status.sfe{
+	background-color: #86e4ad;
+	color: #006b29;
+	border-radius: 20px;
+}.status.cpa{
+	background-color: #86e4d0;
+	color: #006b50;
+	border-radius: 20px;
+}.status.ctro{
+	background-color: #86cee4;
+	color: #00686b;
+	border-radius: 20px;
+}.status.obo{
+	background-color: #86c2e4;
+	color: #00376b;
+	border-radius: 20px;
+}.status.tna{
+	background-color: #8694e4;
+	color: #00326b;
+	border-radius: 20px;
+}
+.status.csr{
+	background-color: #9786e4;
+	color: #0b006b;
+	border-radius: 20px;
+}
+.status.tpe{
+	background-color: #aa86e4;
+	color: #20006b;
+	border-radius: 20px;
+}
+.status.otn{
+	background-color: #d486e4;
+	color: #44006b;
+	border-radius: 20px;
+}
+.status.pla{
+	background-color: #e486ad;
+	color: #56006b;
+	border-radius: 20px;
+}
+.status.blo{
+	background-color: #86a7e4;
+	color: #00326b;
+	border-radius: 20px;
+}

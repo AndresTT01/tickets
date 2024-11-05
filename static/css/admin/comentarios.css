@@ -1,0 +1,184 @@
+/* Estilo del contenedor de comentarios */
+.comentarios {
+    background: var(--grey); /* Fondo oscuro */
+    padding: 20px;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+/* Estilo individual de cada comentario */
+.comentario {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    border-left: 2px solid #555555; /* Línea gris */
+    padding-left: 10px;
+}
+
+/* Imagen del usuario */
+.comentario .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #555555; /* Placeholder para la imagen de usuario */
+}
+
+/* Encabezado del comentario (nombre y fecha) */
+.comentario .encabezado {
+    display: flex;
+    flex-direction: column;
+    background: var(--light); /* Fondo oscuro para la caja de nombre y fecha */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Nombre del usuario */
+.comentario .nombre {
+    font-weight: bold;
+    color: #00cc66; /* Verde suave */
+}
+
+/* Fecha del comentario */
+.comentario .fecha {
+    font-size: 0.85em;
+    color: var(--dark);
+}
+
+/* Texto del comentario */
+.comentario .texto {
+    margin-top: 5px;
+    color: var(--dark);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Botón de respuesta */
+.reply-btn {
+    background: #004d79;
+    border: 1px solid #004d79;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.reply-btn:hover {
+    background-color: #006779;
+    color: #1e1e1e;
+}
+
+/* Caja de respuesta */
+.reply-box {
+    background-color: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 12px;
+    margin-top: 12px;
+    max-width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Barra de herramientas con botones de iconos */
+.toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    justify-content: space-around;
+}
+
+.toolbar button, .file-label {
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 10%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.toolbar button:hover, .file-label:hover {
+    background-color: #2a2a2a;
+    color: #1e1e1e;
+}
+
+.file-input {
+    display: none;
+}
+
+/* Estilo para el div editable (reemplazo del textarea) */
+#replyText {
+    width: 100%;
+    min-height: 100px; /* Altura mínima del div editable */
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: none;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    overflow-y: auto; /* Permitir desplazamiento si es necesario */
+}
+
+/* Asegurarse de que el div editable tenga un borde cuando esté enfocado */
+#replyText:focus {
+    background-color: #333;
+    outline: none;
+}
+
+/* Botón de Enviar */
+.send-btn {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.send-btn:hover {
+    background-color: #9c9c9c;
+    transform: translateY(-2px);
+    color: #000;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilo para el botón de eliminar imagen */
+.image-remove-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
