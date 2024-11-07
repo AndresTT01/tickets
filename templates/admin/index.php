@@ -31,6 +31,7 @@
 	<title>Admin Dashboard | CPSP</title>
 </head>
 <body>
+	<?php include(__DIR__.'/../../db/admin/get/get_users.php'); ?>
 
 
 	<!-- SIDEBAR -->
@@ -475,7 +476,7 @@
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3>0</h3>
+						<h3><?php echo $totalUsuarios; ?></h3>
 						<p>Total de usuarios</p>
 					</span>
 				</li>
@@ -493,9 +494,17 @@
 						<p>Total de usuarios Activos</p>
 					</span>
 				</li>
+				<li>
+					<i class='bx bxs-group' ></i>
+					<span class="text">
+						<h3>0</h3>
+						<p>Total de usuarios Desactivados</p>
+					</span>
+				</li>
 			</ul>
 
-			<?php include('../../../db/admin/get/get_users.php'); ?>
+
+
 			<div class="table-data">
 				<div class="order">
 					<div class="table_header">
@@ -522,8 +531,8 @@
 										<td><?php echo htmlspecialchars($usuario['id']); ?></td>
 										<td><?php echo htmlspecialchars($usuario['nombres']); ?></td>
 										<td><?php echo htmlspecialchars($usuario['email']); ?></td>
-										<td><?php echo htmlspecialchars($usuario['sucursal_id']); ?></td>
-										<td><?php echo htmlspecialchars($usuario['status_id']); ?></td>
+										<td><?php echo htmlspecialchars($usuario['sucursal_nombre']); ?></td>
+										<td><?php echo htmlspecialchars($usuario['status_descripcion']); ?></td>
 									</tr>
 								<?php endforeach; ?>
 							<?php else : ?>

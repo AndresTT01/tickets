@@ -1,6 +1,6 @@
 <?php
 // Verifica si el archivo de conexión se incluye correctamente
-if (!include('../../conexion.php')) {
+if (!include(__DIR__.'/../../conexion.php')) {
     die('Error: No se pudo incluir el archivo de conexión.');
 }
 
