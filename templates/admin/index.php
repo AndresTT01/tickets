@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="/static/img/ICO.ico" />
+	<link rel="shortcut icon" href="static/img/ICO.ico" />
 
 	
 	<!-- Boxicons -->
@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="static/css/admin/ajustes.css">
 	<link rel="stylesheet" type="text/css" href="static/css/admin/ajustes.css">
 	<link rel="stylesheet" type="text/css" href="static/css/admin/content.css">
+	<link rel="stylesheet" type="text/css" href="static/css/admin/editmodaluser.css">
 	<link rel="stylesheet" type="text/css" href="static/css/admin/ajustes.css">
 	<link rel="stylesheet" type="text/css" href="static/css/admin/main.css">
 	<link rel="stylesheet" type="text/css" href="static/css/admin/modal.css">
@@ -32,6 +33,7 @@
 </head>
 <body>
 	<?php include(__DIR__.'/../../db/admin/get/get_users.php'); ?>
+	<?php include(__DIR__.'/../../db/admin/get/get_suc.php'); ?>
 
 
 	<!-- SIDEBAR -->
@@ -483,21 +485,21 @@
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3>0</h3>
+						<h3><?php echo $usuariosSuspendidos; ?></h3>
 						<p>Total de Usuario suspendidos</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3>0</h3>
+						<h3><?php echo $usuariosActivos; ?></h3>
 						<p>Total de usuarios Activos</p>
 					</span>
 				</li>
 				<li>
 					<i class='bx bxs-group' ></i>
 					<span class="text">
-						<h3>0</h3>
+						<h3><?php echo $usuariosDesactivados; ?></h3>
 						<p>Total de usuarios Desactivados</p>
 					</span>
 				</li>
@@ -521,18 +523,31 @@
 								<th>email <i class="bi bi-chevron-expand"></i></th>
 								<th>sucursal <i class="bi bi-chevron-expand"></i></th>
 								<th>estatus <i class="bi bi-chevron-expand"></i></th>
+								<th>Fecha Creacion <i class="bi bi-chevron-expand"></i></th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php if (!empty($usuarios)) : ?>
 								<?php foreach ($usuarios as $usuario) : ?>
 									<tr>
-										<td>editar o borrar</td>
+										<td>
+											<!-- Botón que llama a la función JavaScript con los datos del usuario -->
+											<button type="button" onclick="abrirModal(
+													'<?php echo $usuario['id']; ?>',
+													'<?php echo htmlspecialchars($usuario['nombres']); ?>',
+													'<?php echo htmlspecialchars($usuario['email']); ?>',
+													'<?php echo htmlspecialchars($usuario['sucursal_nombre']); ?>',
+													'<?php echo htmlspecialchars($usuario['status_descripcion']); ?>',
+													'<?php echo htmlspecialchars($usuario['fecha_creacion']); ?>'
+												)">Editar
+											</button>
+										</td>
 										<td><?php echo htmlspecialchars($usuario['id']); ?></td>
 										<td><?php echo htmlspecialchars($usuario['nombres']); ?></td>
 										<td><?php echo htmlspecialchars($usuario['email']); ?></td>
 										<td><?php echo htmlspecialchars($usuario['sucursal_nombre']); ?></td>
 										<td><?php echo htmlspecialchars($usuario['status_descripcion']); ?></td>
+										<td><?php echo htmlspecialchars($usuario['fecha_creacion']); ?></td>
 									</tr>
 								<?php endforeach; ?>
 							<?php else : ?>
@@ -636,12 +651,40 @@
 							</div>
 
 							<div class="button-group">
-								<button type="submit">Guardar</button>
+								<button class="ddd" type="submit">Guardar</button>
 								<button class="cerrar">Cancelar</button>
 							</div>
 						</form>
 					</div>
 				</div>
+
+				<!-- Modal para edición de usuario -->
+				<div id="modalEditar" style="display: none;">
+					<div class="modal-content">
+						<span onclick="cerrarModal()" class="close">&times;</span>
+						<h2>Editar Usuario</h2>
+						<form id="formEditarUsuario">
+							<input type="hidden" id="editId">
+							<label for="editNombres">Nombre:</label>
+							<input type="text" id="editNombres" name="nombres">
+
+							<label for="editEmail">Email:</label>
+							<input type="email" id="editEmail" name="email">
+
+							<label for="editSucursal">Sucursal:</label>
+							<input type="text" id="editSucursal" name="sucursal">
+
+							<label for="editStatus">Status:</label>
+							<input type="text" id="editStatus" name="status">
+
+							<label for="editFecha">Fecha de Creación:</label>
+							<input type="text" id="editFecha" name="fecha_creacion" readonly>
+
+							<button type="submit">Guardar Cambios</button>
+						</form>
+					</div>
+				</div>
+								
 			</div>
 		</main>
 
@@ -678,23 +721,29 @@
 							<tr>
 								<th>Acciones <i class="bi bi-chevron-expand"></i></th>
 								<th>ID <i class="bi bi-chevron-expand"></i></th>
-								<th>nombre <i class="bi bi-chevron-expand"></i></th>
-								<th>email <i class="bi bi-chevron-expand"></i></th>
-								<th>sucursal <i class="bi bi-chevron-expand"></i></th>
-								<th>estatus <i class="bi bi-chevron-expand"></i></th>
+								<th>Nombre <i class="bi bi-chevron-expand"></i></th>
+								<th>Direccion <i class="bi bi-chevron-expand"></i></th>
+								<th>Fecha de creacion <i class="bi bi-chevron-expand"></i></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									editar o borrar
-								</td>
-								<td>ID</td>
-								<td>nombre</td>
-								<td>email</td>
-								<td>sucursal</td>
-								<td>estatus</td>
-							</tr>	
+							<?php if (!empty($suc)) : ?>
+								<?php foreach ($suc as $s) : ?>
+									<tr>
+										<td>
+											<button type="button">Editar</button>
+										</td>
+										<td><?php echo htmlspecialchars($s['id']); ?></td>
+										<td><?php echo htmlspecialchars($s['nombre']); ?></td>
+										<td><?php echo htmlspecialchars($s['direccion']); ?></td>
+										<td><?php echo htmlspecialchars($s['fecha_creacion']); ?></td>
+									</tr>
+								<?php endforeach; ?>
+							<?php else : ?>
+								<tr>
+									<td colspan="6">No se encontraron registros</td>
+								</tr>
+							<?php endif; ?>
 						</tbody>
 					</table>
 				</div>
@@ -723,7 +772,7 @@
 
 
 							<div class="button-group">
-								<button type="submit">Guardar</button>
+								<button class="ddd" type="submit">Guardar</button>
 								<button class="cerrar" id="kil">Cancelar</button>
 							</div>
 						</form>
@@ -738,13 +787,12 @@
 	</section>
 	<!-- CONTENT -->
 	
-
+	<!-- =========== Scripts =========  -->
 	<script src="static/js/mode-black.js"></script>
 	<script src="static/js/menu.js"></script>
-
-	<!-- =========== Scripts =========  -->
 	<script src="static/js/admin/adduserform.js"></script>
 	<script src="static/js/admin/addsucform.js"></script>
+	<script src="static/js/admin/edituserform.js"></script>
 	<script src="https://kit.fontawesome.com/9a18bf423e.js" crossorigin="anonymous"></script>
 	
 
