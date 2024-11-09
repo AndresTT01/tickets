@@ -535,11 +535,13 @@
 											<button type="button" onclick="abrirModal(
 													'<?php echo $usuario['id']; ?>',
 													'<?php echo htmlspecialchars($usuario['nombres']); ?>',
+													'<?php echo htmlspecialchars($usuario['apellidos']); ?>',
+													'<?php echo htmlspecialchars($usuario['ext']); ?>',
 													'<?php echo htmlspecialchars($usuario['email']); ?>',
+													'<?php echo htmlspecialchars($usuario['password']); ?>',
+													'<?php echo htmlspecialchars($usuario['roles_nombre']); ?>',
 													'<?php echo htmlspecialchars($usuario['sucursal_nombre']); ?>',
-													'<?php echo htmlspecialchars($usuario['status_descripcion']); ?>',
-													'<?php echo htmlspecialchars($usuario['fecha_creacion']); ?>'
-												)">Editar
+													'<?php echo htmlspecialchars($usuario['status_descripcion']); ?>'												)">Editar
 											</button>
 										</td>
 										<td><?php echo htmlspecialchars($usuario['id']); ?></td>
@@ -559,7 +561,7 @@
 					</table>
 				</div>
 		
-				<!-- Ventana modal -->
+				<!-- Ventana modal para agregar nuevo usuario -->
 				<div id="UserFormModal" class="modal">
 					<div class="modalt">
 						<span class="close">&times;</span>
@@ -594,9 +596,6 @@
 								</div>
 							</div>
 
-							
-
-							
 
 							<div class="flex-container">
 								<div>
@@ -659,28 +658,98 @@
 				</div>
 
 				<!-- Modal para edición de usuario -->
-				<div id="modalEditar" style="display: none;">
+				<div id="modalEditar" class="modal">
 					<div class="modal-content">
 						<span onclick="cerrarModal()" class="close">&times;</span>
 						<h2>Editar Usuario</h2>
-						<form id="formEditarUsuario">
-							<input type="hidden" id="editId">
-							<label for="editNombres">Nombre:</label>
-							<input type="text" id="editNombres" name="nombres">
+						<form id="formEditarUsuario" action="./db///.php" method="POST">
 
-							<label for="editEmail">Email:</label>
-							<input type="email" id="editEmail" name="email">
+							<div class="flex-container"> 
+								<input type="hidden" id="editId">
 
-							<label for="editSucursal">Sucursal:</label>
-							<input type="text" id="editSucursal" name="sucursal">
+								<div>
+									<label for="editNombres">Nombre:</label>
+									<input type="text" id="editNombres" name="editNombres">
+								</div>
+								<div>
+									<label for="editApellidos">Apellido's:</label>
+									<input type="text" id="editApellidos" name="editApellidos">
+								</div>
+								<div>
+									<label for="editExt">Ext:</label>
+									<input type="number" id="editExt" name="editExt">
+								</div>
 
-							<label for="editStatus">Status:</label>
-							<input type="text" id="editStatus" name="status">
+							</div>
 
-							<label for="editFecha">Fecha de Creación:</label>
-							<input type="text" id="editFecha" name="fecha_creacion" readonly>
+							<div class="flex-container">
+								<div>
+									<label for="editEmail">Email:</label>
+									<input type="email" id="editEmail" name="editEmail">
+								</div>
+								<div>
+									<label for="editPass">Contraseña:</label>
+									<input type="text" id="editPass" name="editPass">
+								</div>
 
-							<button type="submit">Guardar Cambios</button>
+							</div>
+
+							<div class="flex-container">
+								<div>
+									<label for="editRol">Rol</label>
+									<select  class="ss" id="editRol" name="editRol" required>
+
+										<option value="">Seleccionar...</option>
+										
+									  <!-- Personal Operativo -->
+										<option value="2">Second Admin</option>
+										<option value="3">Soporte</option>
+									  
+									  <!-- Personal de sucursal -->
+										<option value="4">Gerente de sucursal</option>
+										<option value="5">Cordinador de sucursal</option>
+
+									</select>
+								</div>
+
+								<div>
+									<label for="editSucursal">Sucursal</label>
+									<select class="ss" id="editSucursal" name="editSucursal" required>
+										<option value="">Seleccionar...</option>
+										<option value="1">Operativo Matriz</option>
+										<option value="2">Matriz</option>
+										<option value="3">Zalatitan</option>
+										<option value="4">Jose Maria Iglesias</option>
+										<option value="5">Zapopan</option>
+										<option value="6">San Pedrito</option>
+										<option value="7">Santa Fe</option>
+										<option value="8">Chapala</option>
+										<option value="9">Centro</option>
+										<option value="10">Obrero</option>
+										<option value="11">Tonala</option>
+										<option value="12">Centro Sur</option>
+										<option value="13">Tlaquepaque</option>
+										<option value="14">Ocotlan</option>
+										<option value="15">Plaza Aleira</option>
+										<option value="16">Belisario Dominguez</option>
+									</select>
+								</div>
+
+								<div>
+									<label for="editStatus">Estatus</label>
+									<select class="ss" id="editStatus" name="editStatus" required>
+										<option value="">Seleccionar...</option>
+										<option value="1">Activo</option>
+										<option value="2">Suspendido</option>
+										<option value="3">Desactivado</option>								
+									</select>
+								</div>
+							</div>						
+
+							<div class="button-group">
+								<button class="ddd" type="submit">Guardar</button>
+								<button onclick="cerrarModal()" class="cerrar" type="button">Cancelar</button>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -794,6 +863,55 @@
 	<script src="static/js/admin/addsucform.js"></script>
 	<script src="static/js/admin/edituserform.js"></script>
 	<script src="https://kit.fontawesome.com/9a18bf423e.js" crossorigin="anonymous"></script>
+	<!-- Incluye jQuery y SweetAlert -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#SucFormm').on('submit', function(e) { // Reemplaza #miFormulario con el id de tu formulario
+				e.preventDefault(); // Previene el envío del formulario por defecto
+
+				$.ajax({
+					url: './db/admin/registed/addsuc.php', // Cambia por la ruta a tu archivo PHP
+					type: 'POST',
+					data: $(this).serialize(), // Envía todos los datos del formulario
+					dataType: 'json', // Espera un JSON de respuesta
+					success: function(response) {
+						// Verifica el estado de la respuesta y muestra SweetAlert
+						if (response.status === 'success') {
+							Swal.fire({
+								icon: 'success',
+								title: '¡Éxito!',
+								text: response.message,
+								confirmButtonText: 'Aceptar'
+							});
+						} else {
+							Swal.fire({
+								icon: 'error',
+								title: 'Error',
+								text: response.message,
+								confirmButtonText: 'Intentar de nuevo'
+							});
+						}
+						// Limpia el formulario si se envió correctamente
+						if (response.status === 'success') {
+							$('#SucForm').hide(); // Esto oculta la ventana
+           				 	$('#SucFormm')[0].reset(); // Limpiar los campos del formulario
+						}
+					},
+					error: function() {
+						Swal.fire({
+							icon: 'error',
+							title: 'Error',
+							text: 'Hubo un problema al procesar el formulario.',
+							confirmButtonText: 'Intentar de nuevo'
+						});
+					}
+				});
+			});
+		});
+	</script>
 	
 
 	

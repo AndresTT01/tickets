@@ -15,13 +15,19 @@ try {
     $query = "
     SELECT 
         usuarios.id, 
-        usuarios.nombres, 
+        usuarios.nombres,
+        usuarios.apellidos,
+        usuarios.ext,
         usuarios.email, 
+        usuarios.password,
+        roles.nombre AS roles_nombre,
         sucursales.nombre AS sucursal_nombre, 
         status.descripcion AS status_descripcion,
         usuarios.fecha_creacion
     FROM 
         usuarios
+    JOIN 
+        roles ON usuarios.rol_id = roles.id
     JOIN 
         sucursales ON usuarios.sucursal_id = sucursales.id
     JOIN 
