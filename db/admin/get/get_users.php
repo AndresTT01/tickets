@@ -23,7 +23,8 @@ try {
         roles.nombre AS roles_nombre,
         sucursales.nombre AS sucursal_nombre, 
         status.descripcion AS status_descripcion,
-        usuarios.fecha_creacion
+        usuarios.fecha_creacion,
+        aoperativas.nombre AS aop_nombre
     FROM 
         usuarios
     JOIN 
@@ -31,7 +32,14 @@ try {
     JOIN 
         sucursales ON usuarios.sucursal_id = sucursales.id
     JOIN 
-        status ON usuarios.status_id = status.id";
+        status ON usuarios.status_id = status.id
+    LEFT JOIN 
+        aoperativas ON usuarios.areaoperativa = aoperativas.id
+    WHERE 
+        usuarios.id > 1
+    ORDER BY 
+        usuarios.id ASC"; // Ordena por ID en orden ascendente
+    
 
     $result = $conn->query($query);
 

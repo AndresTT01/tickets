@@ -541,7 +541,8 @@
 													'<?php echo htmlspecialchars($usuario['password']); ?>',
 													'<?php echo htmlspecialchars($usuario['roles_nombre']); ?>',
 													'<?php echo htmlspecialchars($usuario['sucursal_nombre']); ?>',
-													'<?php echo htmlspecialchars($usuario['status_descripcion']); ?>'												)">Editar
+													'<?php echo htmlspecialchars($usuario['status_descripcion']); ?>',
+													'<?php echo htmlspecialchars($usuario['aop_nombre']); ?>'													)">Editar
 											</button>
 										</td>
 										<td><?php echo htmlspecialchars($usuario['id']); ?></td>
@@ -561,12 +562,14 @@
 					</table>
 				</div>
 		
+				
+
 				<!-- Ventana modal para agregar nuevo usuario -->
 				<div id="UserFormModal" class="modal">
 					<div class="modalt">
 						<span class="close">&times;</span>
 						<h2>Añadir Nuevo Usuario</h2>
-						<form id="UserForm"  action="./db/admin/registed/adduser.php" method="POST">
+						<form id="UserForm" action="./db/admin/registed/adduser.php" method="POST">
 							<div class="flex-container">
 								<div>
 									<label for="name">Nombre's:</label>
@@ -583,9 +586,8 @@
 									<input type="number" id="ext" name="ext" required>
 								</div>
 							</div>
-							
 
-							<div  class="flex-container">
+							<div class="flex-container">
 								<div>
 									<label for="mail">Email:</label>
 									<input type="email" id="mail" name="mail" required>
@@ -596,22 +598,47 @@
 								</div>
 							</div>
 
-
 							<div class="flex-container">
 								<div>
 									<label for="rol">Rol</label>
-									<select  class="ss" id="rol" name="rol" required>
-
+									<select class="ss" id="rol" name="rol" required>
 										<option value="">Seleccionar...</option>
-										
-									  <!-- Personal Operativo -->
+										<!-- Personal Operativo -->
 										<option value="2">Second Admin</option>
 										<option value="3">Soporte</option>
-									  
-									  <!-- Personal de sucursal -->
+
+										<!-- Personal de sucursal -->
 										<option value="4">Gerente de sucursal</option>
 										<option value="5">Cordinador de sucursal</option>
 
+										<!-- Personal Operativo -->
+										<option value="6">Operativo</option>
+									</select>
+								</div>
+
+								<!-- Div de Area Operativa, inicialmente oculto -->
+								<div id="areaOperativaDiv" style="display:none;">
+									<label for="aop">Area Operativa</label>
+									<select class="ss" id="aop" name="aop" required>
+										<option value="">Seleccionar...</option>
+										<option value="1">Archivo</option>
+										<option value="2">Informes</option>
+										<option value="3">Pagares</option>
+										<option value="4">Gerencia Adjunta</option>
+										<option value="5">Recursos Humanos</option>
+										<option value="6">Juridico</option>
+										<option value="7">Subgerencia de cobranza</option>
+										<option value="8">Salas</option>
+										<option value="9">Mercadotecnia</option>
+										<option value="10">Compras</option>
+										<option value="11">Almacen</option>
+										<option value="12">Riesgos</option>
+										<option value="13">Normatividad</option>
+										<option value="14">Coll center</option>
+										<option value="15">Contraloria</option>
+										<option value="16">Contabilidad</option>
+										<option value="17">Bodega</option>
+										<option value="18">Talleres</option>
 									</select>
 								</div>
 
@@ -630,21 +657,12 @@
 										<option value="9">Centro</option>
 										<option value="10">Obrero</option>
 										<option value="11">Tonala</option>
-										<option value="12">Centro Sur</option>
-										<option value="13">Tlaquepaque</option>
-										<option value="14">Ocotlan</option>
-										<option value="15">Plaza Aleira</option>
-										<option value="16">Belisario Dominguez</option>
-									</select>
-								</div>
-
-								<div>
-									<label for="estts">Estatus</label>
-									<select class="ss" id="estts" name="estts" required>
-										<option value="">Seleccionar...</option>
-										<option value="1">Activo</option>
-										<option value="2">Suspendido</option>
-										<option value="3">Desactivado</option>								
+										<option value="12">San José Del Castillo</option>
+										<option value="13">Centro Sur</option>
+										<option value="14">Tlaquepaque</option>
+										<option value="15">Ocotlan</option>
+										<option value="16">Plaza Aleira</option>
+										<option value="17">Belisario Dominguez</option>
 									</select>
 								</div>
 							</div>
@@ -657,15 +675,41 @@
 					</div>
 				</div>
 
+				<!-- JavaScript para manejar el cambio de visibilidad del div Area Operativa -->
+				<script>
+					document.getElementById('rol').addEventListener('change', function() {
+						var areaOperativaDiv = document.getElementById('areaOperativaDiv');
+						var aopField = document.getElementById('aop');
+						var rolValue = this.value;
+
+						// Muestra el div de Area Operativa solo si el rol es "Operativo" (valor 6)
+						if (rolValue == '6') {
+							areaOperativaDiv.style.display = 'block';
+							// Asegurarse de que el campo aop es obligatorio cuando se muestra
+							aopField.setAttribute('required', 'true');
+						} else {
+							areaOperativaDiv.style.display = 'none';
+							// Quitar el atributo required cuando el campo aop está oculto
+							aopField.removeAttribute('required');
+						}
+
+						// Depuración: mostrar en consola los valores seleccionados
+						console.log("Rol:", rolValue);
+						console.log("Area Operativa:", aopField ? aopField.value : 'No Aplica');
+					});
+
+
+				</script>
+
+
 				<!-- Modal para edición de usuario -->
 				<div id="modalEditar" class="modal">
 					<div class="modal-content">
 						<span onclick="cerrarModal()" class="close">&times;</span>
 						<h2>Editar Usuario</h2>
-						<form id="formEditarUsuario" action="./db///.php" method="POST">
-
-							<div class="flex-container"> 
-								<input type="hidden" id="editId">
+						<form id="formEditarUsuario" action="./db/admin/edit/edit_users.php" method="POST">
+							<div class="flex-container">
+								<input type="hidden" id="editId" name="editId">
 
 								<div>
 									<label for="editNombres">Nombre:</label>
@@ -679,7 +723,6 @@
 									<label for="editExt">Ext:</label>
 									<input type="number" id="editExt" name="editExt">
 								</div>
-
 							</div>
 
 							<div class="flex-container">
@@ -691,24 +734,44 @@
 									<label for="editPass">Contraseña:</label>
 									<input type="text" id="editPass" name="editPass">
 								</div>
-
 							</div>
 
 							<div class="flex-container">
 								<div>
 									<label for="editRol">Rol</label>
-									<select  class="ss" id="editRol" name="editRol" required>
-
+									<select class="ss" id="editRol" name="editRol" required onchange="toggleAreaOperativa()">
 										<option value="">Seleccionar...</option>
-										
-									  <!-- Personal Operativo -->
 										<option value="2">Second Admin</option>
 										<option value="3">Soporte</option>
-									  
-									  <!-- Personal de sucursal -->
 										<option value="4">Gerente de sucursal</option>
-										<option value="5">Cordinador de sucursal</option>
+										<option value="5">Coordinador de sucursal</option>
+										<option value="6">Operativo</option>
+									</select>
+								</div>
 
+								<!-- Campo de Área Operativa -->
+								<div id="areaOperativaContainer" style="display: none;">
+									<label for="editareaop">Área Operativa</label>
+									<select class="ss" id="editareaop" name="editareaop">
+										<option value="">Seleccionar...</option>
+										<option value="1">Archivo</option>
+										<option value="2">Informes</option>
+										<option value="3">Pagares</option>
+										<option value="4">Gerencia Adjunta</option>
+										<option value="5">Recursos Humanos</option>
+										<option value="6">Jurídico</option>
+										<option value="7">Cobranza</option>
+										<option value="8">Salas</option>
+										<option value="9">Mercadotecnia</option>
+										<option value="10">Compras</option>
+										<option value="11">Almacén</option>
+										<option value="12">Riesgos</option>
+										<option value="13">Normatividad</option>
+										<option value="14">Call Center</option>
+										<option value="15">Contraloría</option>
+										<option value="16">Contabilidad</option>
+										<option value="17">Bodega</option>
+										<option value="18">Talleres</option>
 									</select>
 								</div>
 
@@ -727,11 +790,12 @@
 										<option value="9">Centro</option>
 										<option value="10">Obrero</option>
 										<option value="11">Tonala</option>
-										<option value="12">Centro Sur</option>
-										<option value="13">Tlaquepaque</option>
-										<option value="14">Ocotlan</option>
-										<option value="15">Plaza Aleira</option>
-										<option value="16">Belisario Dominguez</option>
+										<option value="12">San José Del Castillo</option>
+										<option value="13">Centro Sur</option>
+										<option value="14">Tlaquepaque</option>
+										<option value="15">Ocotlan</option>
+										<option value="16">Plaza Aleira</option>
+										<option value="17">Belisario Dominguez</option>
 									</select>
 								</div>
 
@@ -741,10 +805,10 @@
 										<option value="">Seleccionar...</option>
 										<option value="1">Activo</option>
 										<option value="2">Suspendido</option>
-										<option value="3">Desactivado</option>								
+										<option value="3">Desactivado</option>
 									</select>
 								</div>
-							</div>						
+							</div>
 
 							<div class="button-group">
 								<button class="ddd" type="submit">Guardar</button>
@@ -912,7 +976,98 @@
 			});
 		});
 	</script>
-	
+
+	<script>
+		$(document).ready(function() {
+			$('#UserForm').on('submit', function(e) { // Reemplaza #miFormulario con el id de tu formulario
+				e.preventDefault(); // Previene el envío del formulario por defecto
+
+				$.ajax({
+					url: './db/admin/registed/adduser.php', // Cambia por la ruta a tu archivo PHP
+					type: 'POST',
+					data: $(this).serialize(), // Envía todos los datos del formulario
+					dataType: 'json', // Espera un JSON de respuesta
+					success: function(response) {
+						// Verifica el estado de la respuesta y muestra SweetAlert
+						if (response.status === 'success') {
+							Swal.fire({
+								icon: 'success',
+								title: '¡Éxito!',
+								text: response.message,
+								confirmButtonText: 'Aceptar'
+							});
+						} else {
+							Swal.fire({
+								icon: 'error',
+								title: 'Error',
+								text: response.message,
+								confirmButtonText: 'Intentar de nuevo'
+							});
+						}
+						// Limpia el formulario si se envió correctamente
+						if (response.status === 'success') {
+							$('#UserFormModal').hide(); // Esto oculta la ventana
+           				 	$('#UserForm')[0].reset(); // Limpiar los campos del formulario
+						}
+					},
+					error: function() {
+						Swal.fire({
+							icon: 'error',
+							title: 'Error',
+							text: 'Hubo un problema al procesar el formulario.',
+							confirmButtonText: 'Intentar de nuevo'
+						});
+					}
+				});
+			});
+		});
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			$('#formEditarUsuario').on('submit', function(e) { // Reemplaza #miFormulario con el id de tu formulario
+				e.preventDefault(); // Previene el envío del formulario por defecto
+
+				$.ajax({
+					url: './db/admin/edit/edit_users.php', // Cambia por la ruta a tu archivo PHP
+					type: 'POST',
+					data: $(this).serialize(), // Envía todos los datos del formulario
+					dataType: 'json', // Espera un JSON de respuesta
+					success: function(response) {
+						// Verifica el estado de la respuesta y muestra SweetAlert
+						if (response.status === 'success') {
+							Swal.fire({
+								icon: 'success',
+								title: '¡Éxito!',
+								text: response.message,
+								confirmButtonText: 'Aceptar'
+							});
+						} else {
+							Swal.fire({
+								icon: 'error',
+								title: 'Error',
+								text: response.message,
+								confirmButtonText: 'Intentar de nuevo'
+							});
+						}
+						// Limpia el formulario si se envió correctamente
+						if (response.status === 'success') {
+							$('#modalEditar').hide(); // Esto oculta la ventana
+           				 	$('#formEditarUsuario')[0].reset(); // Limpiar los campos del formulario
+						}
+					},
+					error: function() {
+						Swal.fire({
+							icon: 'error',
+							title: 'Error',
+							text: 'Hubo un problema al procesar el formulario.',
+							confirmButtonText: 'Intentar de nuevo'
+						});
+					}
+				});
+			});
+		});
+	</script>
 
 	
 	<!-- Code injected by live-server 

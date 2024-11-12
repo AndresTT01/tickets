@@ -10,19 +10,20 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	
-	<link rel="shortcut icon" href="/static/img/ICO.ico" />
+	<link rel="shortcut icon" href="static/img/ICO.ico" />
 	<!-- My CSS -->
-	<link rel="stylesheet" href="/static/css/user/admin.css">
-	<link rel="stylesheet" href="/static/css/user/ajustes.css">
-	<link rel="stylesheet" href="/static/css/user/content.css">
-	<link rel="stylesheet" href="/static/css/user/main.css">
-	<link rel="stylesheet" href="/static/css/user/modal.css">
-	<link rel="stylesheet" href="/static/css/user/navbar.css">
-	<link rel="stylesheet" href="/static/css/user/otros.css">
-	<link rel="stylesheet" href="/static/css/user/sidebar.css">
-	<link rel="stylesheet" href="/static/css/user/status.css">
-	<link rel="stylesheet" href="/static/css/user/tablas.css">
-	<link rel="stylesheet" href="/static/css/user/select.css">
+	<base href="/tickets/">
+	<link rel="stylesheet" href="static/css/user/admin.css">
+	<link rel="stylesheet" href="static/css/user/ajustes.css">
+	<link rel="stylesheet" href="static/css/user/content.css">
+	<link rel="stylesheet" href="static/css/user/main.css">
+	<link rel="stylesheet" href="static/css/user/modal.css">
+	<link rel="stylesheet" href="static/css/user/navbar.css">
+	<link rel="stylesheet" href="static/css/user/otros.css">
+	<link rel="stylesheet" href="static/css/user/sidebar.css">
+	<link rel="stylesheet" href="static/css/user/status.css">
+	<link rel="stylesheet" href="static/css/user/tablas.css">
+	<link rel="stylesheet" href="static/css/user/select.css">
 
 	<title>User Dashboard | CPSP</title>
 </head>
@@ -260,40 +261,8 @@
 									<select  class="ss"id="departamento" name="departamento" required>
 										<option value="">Seleccionar...</option>
 										
-									  <!-- Personal Operativo -->
-										<!-- planta baja -->
-										
-										<option value="Recursos Humanos">Archivo</option>
-										<option value="Finanzas">Informes</option>
-										<option value="Finanzas">Pagares</option>
-
-
-										<!-- Primer Piso -->
+									  <!-- Personal Operativo (Sandra)-->
 										<option value="Finanzas">Direccion General</option>
-										<option value="Finanzas">Gerencia Adjunta</option>
-										<option value="Finanzas">Recursos Humanos</option>
-										<option value="Finanzas">Juridico</option>
-										<option value="Finanzas">Subgerencia de cobranza</option>
-										<option value="Sistemas">Salas</option>
-
-
-										<!-- Segundo Piso -->
-										<option value="Finanzas">Mercadotecnia</option>
-										<option value="Finanzas">Compras</option>
-										<option value="Finanzas">Almacen</option>
-										<option value="Finanzas">Riesgos</option>
-										<option value="Finanzas">Normatividad</option>
-
-										
-										<!-- Tercer Piso -->
-										<option value="Finanzas">Coll center</option>
-										<option value="Finanzas">Contraloria</option>
-										<option value="Finanzas">Contabilidad</option>
-
-
-										<!-- Otros Edificios -->
-										<option value="Finanzas">Bodega</option>
-										<option value="Finanzas">Talleres</option>
 										<option value="Finanzas">Servicio Medico</option>
 									  <!--Personal Operativo -->
 
@@ -974,8 +943,8 @@
 
 	
 
-	<script src="/static/js/user/levantarticket.js"></script>
-	<script src="/static/js/mode-black.js"></script>
+	<script src="static/js/user/levantarticket.js"></script>
+	<script src="static/js/mode-black.js"></script>
 
 	
 	<script>
@@ -1027,45 +996,7 @@
     
 	
 
-	
-	<!-- Code injected by live-server 
-	<script>
-		// <![CDATA[  <-- For SVG support
-		if ('WebSocket' in window) {
-			(function () {
-				function refreshCSS() {
-					var sheets = [].slice.call(document.getElementsByTagName("link"));
-					var head = document.getElementsByTagName("head")[0];
-					for (var i = 0; i < sheets.length; ++i) {
-						var elem = sheets[i];
-						var parent = elem.parentElement || head;
-						parent.removeChild(elem);
-						var rel = elem.rel;
-						if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-							var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-							elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-						}
-						parent.appendChild(elem);
-					}
-				}
-				var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-				var address = protocol + window.location.host + window.location.pathname + '/ws';
-				var socket = new WebSocket(address);
-				socket.onmessage = function (msg) {
-					if (msg.data == 'reload') window.location.reload();
-					else if (msg.data == 'refreshcss') refreshCSS();
-				};
-				if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-					console.log('Live reload enabled.');
-					sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-				}
-			})();
-		}
-		else {
-			console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-		}
-		// ]]>
-	</script>-->
+
 </body>
 </html>
 
