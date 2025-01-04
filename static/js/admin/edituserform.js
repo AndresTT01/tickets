@@ -1,143 +1,113 @@
-// Función para mostrar/ocultar el campo "Área Operativa" según el rol seleccionado
+// Mapeos para roles, áreas operativas, sucursales y estados
+const roleMapping = {
+    "Second Admin": "2",
+    "Soporte": "3",
+    "Gerente": "4",
+    "Coordinador": "5",
+    "Operativo": "6"
+};
+
+const areaOpMapping = {
+    "Archivo": "1",
+    "Informes": "2",
+    "Pagares": "3",
+    "Gerencia Adjunta": "4",
+    "Recursos Humanos": "5",
+    "Jurídico": "6",
+    "Cobranza": "7",
+    "Salas": "8",
+    "Mercadotecnia": "9",
+    "Compras": "10",
+    "Almacén": "11",
+    "Riesgos": "12",
+    "Normatividad": "13",
+    "Call Center": "14",
+    "Contraloría": "15",
+    "Contabilidad": "16",
+    "Bodega": "17",
+    "Talleres": "18"
+};
+
+const branchMapping = {
+    "Operativo (Matriz)": "1",
+    "Matriz": "2",
+    "Zalatitan": "3",
+    "José María Iglesias": "4",
+    "Zapopan": "5",
+    "San Pedrito": "6",
+    "Santa Fe": "7",
+    "Chapala": "8",
+    "Centro": "9",
+    "Obrero": "10",
+    "Tonalá": "11",
+    "San José Del Castillo": "12",
+    "Centro Sur": "13",
+    "Tlaquepaque": "14",
+    "Ocotlán": "15",
+    "Plaza Aleira": "16",
+    "Belisario Domínguez": "17"
+};
+
+const statusMapping = {
+    "Activo": "1",
+    "Suspendido": "2",
+    "Desactivado": "3"
+};
+
+// Función para abrir el modal y asignar los valores recibidos
+function abrirModal(id, nombres, apellidos, ext, email, password, roles_nombre, sucursal_nombre, status_descripcion, aop_nombre) {
+    try {
+        // Validar datos básicos
+        if (!id || !roles_nombre || !sucursal_nombre) {
+            console.warn("Faltan datos importantes para abrir el modal:", { id, roles_nombre, sucursal_nombre });
+            return;
+        }
+
+        // Asignar valores a los campos de texto
+        document.getElementById("editId").value = id || "";
+        document.getElementById("editNombres").value = nombres || "";
+        document.getElementById("editApellidos").value = apellidos || "";
+        document.getElementById("editExt").value = ext || "";
+        document.getElementById("editEmail").value = email || "";
+        document.getElementById("editPass").value = password || "";
+
+        // Asignar valores a los campos select usando los mapeos
+        document.getElementById("editRol").value = roleMapping[roles_nombre] || "";
+        document.getElementById("editareaop").value = areaOpMapping[aop_nombre] || "";
+        document.getElementById("editSucursal").value = branchMapping[sucursal_nombre] || "";
+        document.getElementById("editStatus").value = statusMapping[status_descripcion] || "";
+
+        // Mostrar/ocultar el área operativa si el rol es "Operativo"
+        toggleAreaOperativa();
+
+        // Mostrar el modal
+        document.getElementById("modalEditar").style.display = "flex";
+
+        // Para depuración
+        console.log("Modal abierto con datos del usuario:", { id, nombres, apellidos, roles_nombre, sucursal_nombre, status_descripcion, aop_nombre });
+    } catch (error) {
+        console.error("Error al abrir el modal:", error);
+    }
+}
+
+// Función para mostrar/ocultar área operativa
 function toggleAreaOperativa() {
     const editRol = document.getElementById("editRol").value;
     const areaOperativaContainer = document.getElementById("areaOperativaContainer");
-
-    // Muestra el campo si el rol es "Operativo" (valor "6"), si no, lo oculta
-    if (editRol === "6") {
-        areaOperativaContainer.style.display = "block";
-    } else {
-        areaOperativaContainer.style.display = "none";
-    }
-}
-
-// Función para abrir el modal y asignar los valores recibidos
-function abrirModal(id, nombres, apellidos, ext, email, password, rol, sucursal, status, areaop) {
-    document.getElementById("editId").value = id;
-    document.getElementById("editNombres").value = nombres;
-    document.getElementById("editApellidos").value = apellidos;
-    document.getElementById("editExt").value = ext;
-    document.getElementById("editEmail").value = email;
-    document.getElementById("editPass").value = password;
-
-    // Asigna el rol y muestra/oculta el campo "Área Operativa" si es necesario
-    const editRol = document.getElementById("editRol");
-    editRol.value = "";
-    if (rol === "Second Admin") {
-        editRol.value = "2";
-    } else if (rol === "Soporte") {
-        editRol.value = "3";
-    } else if (rol === "Gerente") {
-        editRol.value = "4";
-    } else if (rol === "Coordinador") {
-        editRol.value = "5";
-    } else if (rol === "Operativo") {
-        editRol.value = "6";
-    }
-    toggleAreaOperativa();
-
-    // Asigna el área operativa
     const editareaop = document.getElementById("editareaop");
-    editareaop.value = "";
-    if (areaop === "Archivo") {
-        editareaop.value = "1";
-    } else if (areaop === "Informes") {
-        editareaop.value = "2";
-    } else if (areaop === "Pagares") {
-        editareaop.value = "3";
-    } else if (areaop === "Gerencia Adjunta") {
-        editareaop.value = "4";
-    } else if (areaop === "Recursos Humanos") {
-        editareaop.value = "5";
-    } else if (areaop === "Juridico") {
-        editareaop.value = "6";
-    } else if (areaop === "Cobranza") {
-        editareaop.value = "7";
-    } else if (areaop === "Salas") {
-        editareaop.value = "8";
-    } else if (areaop === "Mercadotecnia") {
-        editareaop.value = "9";
-    } else if (areaop === "Compras") {
-        editareaop.value = "10";
-    } else if (areaop === "Almacen") {
-        editareaop.value = "11";
-    } else if (areaop === "Riesgos") {
-        editareaop.value = "12";
-    } else if (areaop === "Normatividad") {
-        editareaop.value = "13";
-    } else if (areaop === "Coll center") {
-        editareaop.value = "14";
-    } else if (areaop === "Contraloria") {
-        editareaop.value = "15";
-    } else if (areaop === "Contabilidad") {
-        editareaop.value = "16";
-    } else if (areaop === "Bodega") {
-        editareaop.value = "17";
-    } else if (areaop === "Talleres") {
-        editareaop.value = "18";
-    }
 
-    // Asigna la sucursal
-    const editSucursal = document.getElementById("editSucursal");
-    editSucursal.value = "";
-    if (sucursal === "Operativo (Matriz)") {
-        editSucursal.value = "1";
-    } else if (sucursal === "Matriz") {
-        editSucursal.value = "2";
-    } else if (sucursal === "Zalatitan") {
-        editSucursal.value = "3";
-    } else if (sucursal === "Jose Maria Iglesias") {
-        editSucursal.value = "4";
-    } else if (sucursal === "Zapopan") {
-        editSucursal.value = "5";
-    } else if (sucursal === "San Pedrito") {
-        editSucursal.value = "6";
-    } else if (sucursal === "Santa Fe") {
-        editSucursal.value = "7";
-    } else if (sucursal === "Chapala") {
-        editSucursal.value = "8";
-    } else if (sucursal === "Centro") {
-        editSucursal.value = "9";
-    } else if (sucursal === "Obrero") {
-        editSucursal.value = "10";
-    } else if (sucursal === "Tonala") {
-        editSucursal.value = "11";
-    } else if (sucursal === "San José Del Castillo") {
-        editSucursal.value = "12";
-    } else if (sucursal === "Centro Sur") {
-        editSucursal.value = "13";
-    } else if (sucursal === "Tlaquepaque") {
-        editSucursal.value = "14";
-    } else if (sucursal === "Ocotlan") {
-        editSucursal.value = "15";
-    } else if (sucursal === "Plaza Aleira") {
-        editSucursal.value = "16";
-    } else if (sucursal === "Belisario Dominguez") {
-        editSucursal.value = "17";
-    }
-
-    // Asigna el estado
-    const editStatus = document.getElementById("editStatus");
-    editStatus.value = "";
-    if (status === "Activo") {
-        editStatus.value = "1";
-    } else if (status === "Suspendido") {
-        editStatus.value = "2";
-    } else if (status === "Desactivado") {
-        editStatus.value = "3";
-    }
-
-    // Muestra la modal
-    document.getElementById("modalEditar").style.display = "flex";
+    // Mostrar el campo si el rol es "Operativo" (valor "6"), si no, ocultarlo y limpiar el valor
+    areaOperativaContainer.style.display = editRol === "6" ? "block" : "none";
+    if (editRol !== "6") editareaop.value = ""; // Limpiar valor si no es "Operativo"
 }
 
-// Función para cerrar la modal
+// Función para cerrar el modal
 function cerrarModal() {
     document.getElementById("modalEditar").style.display = "none";
 }
 
-// Cerrar modal si se hace clic fuera de la ventana modal
-window.onclick = function(event) {
+// Cerrar modal al hacer clic fuera de la ventana modal
+window.onclick = function (event) {
     if (event.target === document.getElementById("modalEditar")) {
         cerrarModal();
     }
